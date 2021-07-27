@@ -7,11 +7,13 @@ import {
 import { ThemeProvider } from 'styled-components';
 import theme from './src/styles/theme';
 
+import { Main } from './src/pages/Main';
+
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaView>
-        <Text>Olá</Text>
+        <Main />
       </SafeAreaView>
     </ThemeProvider>
 
