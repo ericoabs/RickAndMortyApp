@@ -4,10 +4,16 @@ import {
   Text,
 } from 'react-native';
 
+import { ThemeProvider } from 'styled-components';
+import theme from './src/styles/theme';
+
 export const App = () => {
   return (
-    <SafeAreaView>
-      <Text>Olá</Text>
-    </SafeAreaView>
+    <ThemeProvider theme={theme}>
+      <SafeAreaView>
+        <Text>Olá</Text>
+      </SafeAreaView>
+    </ThemeProvider>
+
   );
 };
