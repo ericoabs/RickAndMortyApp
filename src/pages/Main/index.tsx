@@ -24,7 +24,7 @@ export const Main: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header numberOfCharacters={characterList.length} />
       <InputArea />
       <Container>
         <FlatList

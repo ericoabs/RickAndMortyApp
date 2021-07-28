@@ -2,11 +2,15 @@ import React from 'react';
 
 import { Container, Title, HeaderText } from './styles';
 
-export const Header = () => {
+interface HeaderProps {
+  numberOfCharacters: number;
+}
+
+export const Header: React.FC<HeaderProps> = ({ numberOfCharacters }) => {
   return (
     <Container>
       <Title>Listagem</Title>
-      <HeaderText>Personagens</HeaderText>
+      <HeaderText>{numberOfCharacters} Personagens</HeaderText>
     </Container>
   );
 };
