@@ -12,22 +12,31 @@ import {
   CardTitle,
 } from './styles';
 
-export const Card = () => {
+export interface CharacterType {
+  id: number;
+  name: string;
+  species: string;
+  image: string;
+  origin: any;
+}
+
+export const Card: React.FC<CharacterType> = ({
+  name,
+  image,
+  species,
+  origin,
+}) => {
   return (
     <Container>
       <View>
-        <CharacterImage
-          source={{
-            uri: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-          }}
-        />
+        <CharacterImage source={{ uri: image }} />
       </View>
       <TextContainer>
-        <Name>Rick Sanchez</Name>
+        <Name>{name}</Name>
         <CardTitle>Species:</CardTitle>
-        <Description>Human</Description>
+        <Description>{species}</Description>
         <CardTitle>Origin:</CardTitle>
-        <Description>Eart (C-137)</Description>
+        <Description>{origin}</Description>
         <Like name="hearto" size={35} color="#1E2047" />
       </TextContainer>
     </Container>
