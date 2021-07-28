@@ -7,11 +7,12 @@ export const Container = styled.View`
 export const TextContainer = styled.View`
   flex-direction: row;
   padding: 20px;
-  align-items: flex-start;
 `;
 
 export const TextView = styled.View`
   align-items: flex-start;
+  min-width: 200px;
+  padding-right: 100px;
 `;
 
 export const CharacterImage = styled.Image`
@@ -29,13 +30,13 @@ export const Name = styled.Text`
 
 export const CardTitle = styled.Text`
   font-size: 16px;
-  font-family: ${({ theme }) => theme.fonts.semiBold};
+  font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors.title};
 `;
 
 export const Description = styled.Text`
   font-size: 16px;
-  font-family: ${({ theme }) => theme.fonts.medium};
+  font-family: ${({ theme }) => theme.fonts.semiBold};
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -43,4 +44,21 @@ export const Status = styled.Text`
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors.green};
+`;
+
+export const SearchButton = styled.TouchableOpacity`
+  width: 100%;
+  height: 70px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.darkBlue};
+`;
+
+export const ButtonText = styled.Text`
+  font-size: 24px;
+  font-family: ${({ theme }) => theme.fonts.semiBold};
+  color: ${({ theme }) => theme.colors.buttonText};
 `;

@@ -10,6 +10,7 @@ export default {
     cardBackground: '#F0F0F5',
     title: '#333',
     text: '#555',
+    buttonText: '#E1E1E6',
   },
   fonts: {
     regular: 'Poppins-Regular',

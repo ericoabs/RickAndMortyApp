@@ -10,46 +10,53 @@ import {
   TextContainer,
   TextView,
   Status,
+  SearchButton,
+  ButtonText,
 } from './styles';
 
 export const Character = () => {
   return (
-    <Container>
-      <CharacterImage
-        source={{
-          uri: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-        }}
-      />
-      <Name>Rick Sanchez</Name>
+    <>
+      <Container>
+        <CharacterImage
+          source={{
+            uri: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+          }}
+        />
+        <Name>Rick Sanchez</Name>
 
-      <TextContainer>
-        <TextView>
-          <CardTitle>Species:</CardTitle>
-          <Description>Human</Description>
-        </TextView>
+        <TextContainer>
+          <TextView>
+            <CardTitle>Species:</CardTitle>
+            <Description>Human</Description>
+          </TextView>
 
-        <TextView>
-          <CardTitle>Gender:</CardTitle>
-          <Description>Male</Description>
-        </TextView>
-      </TextContainer>
+          <TextView>
+            <CardTitle>Gender:</CardTitle>
+            <Description>Male</Description>
+          </TextView>
+        </TextContainer>
 
-      <TextContainer style={{ flexDirection: 'column' }}>
-        <CardTitle>Location:</CardTitle>
-        <Description>Eart (Replacement Dimension)</Description>
-      </TextContainer>
+        <TextContainer style={{ flexDirection: 'column' }}>
+          <CardTitle>Location:</CardTitle>
+          <Description>Eart (Replacement Dimension)</Description>
+        </TextContainer>
 
-      <TextContainer>
-        <TextView>
-          <CardTitle>Origin:</CardTitle>
-          <Description>Eart (C-137)</Description>
-        </TextView>
+        <TextContainer>
+          <TextView>
+            <CardTitle>Origin:</CardTitle>
+            <Description>Eart (C-137)</Description>
+          </TextView>
 
-        <TextView>
-          <CardTitle>Status:</CardTitle>
-          <Status>Alive</Status>
-        </TextView>
-      </TextContainer>
-    </Container>
+          <TextView>
+            <CardTitle>Status:</CardTitle>
+            <Status>Alive</Status>
+          </TextView>
+        </TextContainer>
+      </Container>
+      <SearchButton>
+        <ButtonText>Buscar no google</ButtonText>
+      </SearchButton>
+    </>
   );
 };
