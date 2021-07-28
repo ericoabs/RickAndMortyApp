@@ -46,7 +46,7 @@ export const Status = styled.Text`
 
 export const SearchButton = styled.TouchableOpacity`
   width: 100%;
-  height: 70px;
+  height: 80px;
 
   align-items: center;
   justify-content: center;
