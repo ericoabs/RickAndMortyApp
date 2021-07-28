@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 100%;
@@ -14,16 +14,17 @@ export const Title = styled.Text`
   margin-left: 23px;
 
   font-size: 20px;
-  font-weight: bold;
+  font-family: 'Poppins-SemiBold';
 
   color: ${({ theme }) => theme.colors.white};
 `;
 
 export const HeaderText = styled.Text`
-  margin-top: 40px;
+  margin-top: 45px;
   margin-right: 15px;
 
   font-size: 14px;
+  font-family: 'Poppins-Regular';
 
   color: ${({ theme }) => theme.colors.gray};
 `;

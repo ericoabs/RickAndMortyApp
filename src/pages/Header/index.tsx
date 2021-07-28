@@ -1,7 +1,6 @@
-import React from "react";
-import { View, Text } from 'react-native';
+import React from 'react';
 
-import { Container, Title, HeaderText } from './styles'
+import { Container, Title, HeaderText } from './styles';
 
 export const Header = () => {
   return (
@@ -9,5 +8,5 @@ export const Header = () => {
       <Title>Listagem</Title>
       <HeaderText>Personagens</HeaderText>
     </Container>
-  )
+  );
 };

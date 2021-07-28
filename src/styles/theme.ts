@@ -11,5 +11,9 @@ export default {
     title: '#333',
     text: '#555',
   },
-  fonts: {},
-}
+  fonts: {
+    regular: 'Poppins-Regular',
+    medium: 'Poppins-Medium',
+    semiBold: 'Poppins-SemiBold',
+  },
+};
