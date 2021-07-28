@@ -20,11 +20,10 @@ export const CharacterImage = styled.Image`
 `;
 
 export const Name = styled.Text`
-  padding: 30px 20px 20px;
-
   font-size: 24px;
   font-family: ${({ theme }) => theme.fonts.semiBold};
   color: ${({ theme }) => theme.colors.title};
+  margin-right: 150px;
 `;
 
 export const CardTitle = styled.Text`
@@ -60,4 +59,19 @@ export const ButtonText = styled.Text`
   font-size: 24px;
   font-family: ${({ theme }) => theme.fonts.semiBold};
   color: ${({ theme }) => theme.colors.buttonText};
+`;
+
+export const ArrowIcon = styled.TouchableHighlight`
+  position: absolute;
+  width: 60px;
+  height: 60px;
+
+  margin: 20px;
+
+  border-radius: 999px;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${({ theme }) => theme.colors.darkBlue};
 `;

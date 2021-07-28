@@ -1,5 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
+import Like from 'react-native-vector-icons/AntDesign';
 
 import {
   Container,
@@ -12,6 +14,7 @@ import {
   Status,
   SearchButton,
   ButtonText,
+  ArrowIcon,
 } from './styles';
 
 export const Character = () => {
@@ -23,8 +26,13 @@ export const Character = () => {
             uri: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
           }}
         />
-        <Name>Rick Sanchez</Name>
-
+        <TextContainer>
+          <Name>Rick Sanchez</Name>
+          <Like name="hearto" size={35} color="#1E2047" />
+        </TextContainer>
+        <ArrowIcon>
+          <Icon name="arrowleft" size={45} color="#fff" />
+        </ArrowIcon>
         <TextContainer>
           <TextView>
             <CardTitle>Species:</CardTitle>
