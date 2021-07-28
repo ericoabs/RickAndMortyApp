@@ -10,7 +10,6 @@ export const TextContainer = styled.View`
 `;
 
 export const TextView = styled.View`
-  align-items: flex-start;
   min-width: 200px;
   padding-right: 100px;
 `;
