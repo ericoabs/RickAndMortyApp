@@ -1,5 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View } from 'react-native';
 
 import {
   Container,
@@ -8,6 +8,8 @@ import {
   CardTitle,
   Description,
   TextContainer,
+  TextView,
+  Status,
 } from './styles';
 
 export const Character = () => {
@@ -21,30 +23,32 @@ export const Character = () => {
       <Name>Rick Sanchez</Name>
 
       <TextContainer>
-        <View>
+        <TextView>
           <CardTitle>Species:</CardTitle>
           <Description>Human</Description>
-        </View>
+        </TextView>
 
-        <View>
+        <TextView>
           <CardTitle>Gender:</CardTitle>
           <Description>Male</Description>
-        </View>
+        </TextView>
       </TextContainer>
 
-      <CardTitle>Origin:</CardTitle>
-      <Description>Eart (C-137)</Description>
+      <TextContainer style={{ flexDirection: 'column' }}>
+        <CardTitle>Location:</CardTitle>
+        <Description>Eart (Replacement Dimension)</Description>
+      </TextContainer>
 
       <TextContainer>
-        <View>
+        <TextView>
           <CardTitle>Origin:</CardTitle>
           <Description>Eart (C-137)</Description>
-        </View>
+        </TextView>
 
-        <View>
-          <Description>Alive</Description>
+        <TextView>
           <CardTitle>Status:</CardTitle>
-        </View>
+          <Status>Alive</Status>
+        </TextView>
       </TextContainer>
     </Container>
   );
