@@ -10,6 +10,7 @@ import {
   Name,
   TextContainer,
   CardTitle,
+  LikeButton,
 } from './styles';
 
 export interface CharacterType {
@@ -37,8 +38,10 @@ export const Card: React.FC<CharacterType> = ({
         <Description>{species}</Description>
         <CardTitle>Origin:</CardTitle>
         <Description>{origin}</Description>
-        <Like name="hearto" size={35} color="#1E2047" />
       </TextContainer>
+      <LikeButton>
+        <Like name="hearto" size={30} color="#1E2047" />
+      </LikeButton>
     </Container>
   );
 };

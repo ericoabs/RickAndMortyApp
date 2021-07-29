@@ -4,7 +4,7 @@ import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { InputArea } from '../../Components/InputArea';
 
-import { Container } from './styles';
+import { CardContainer, Container, InputText } from './styles';
 
 import { CharacterType } from '../../Components/Card';
 import { FlatList } from 'react-native';
@@ -24,24 +24,27 @@ export const Main: React.FC = () => {
 
   return (
     <>
-      <Header numberOfCharacters={characterList.length} />
-      <InputArea />
       <Container>
-        <FlatList
-          data={characterList}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }: { item: CharacterType }) => {
-            return (
-              <Card
-                id={item.id}
-                name={item.name}
-                species={item.species}
-                image={item.image}
-                origin={item.origin.name}
-              />
-            );
-          }}
-        />
+        <Header numberOfCharacters={characterList.length} />
+        {/* <InputArea /> */}
+        <InputText placeholder="Busque por um personagem" />
+        <CardContainer>
+          <FlatList
+            data={characterList}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }: { item: CharacterType }) => {
+              return (
+                <Card
+                  id={item.id}
+                  name={item.name}
+                  species={item.species}
+                  image={item.image}
+                  origin={item.origin.name}
+                />
+              );
+            }}
+          />
+        </CardContainer>
       </Container>
     </>
   );
