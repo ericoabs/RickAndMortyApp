@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-
-// import { useNavigation } from '@react-navigation/core';
+import { Linking } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import Like from 'react-native-vector-icons/AntDesign';
@@ -21,8 +20,6 @@ import {
 } from './styles';
 
 export const Character = ({ route, navigation }) => {
-  // const navigation = useNavigation();
-
   const {
     itemName,
     itemSpecies,
@@ -32,6 +29,15 @@ export const Character = ({ route, navigation }) => {
     itemStatus,
     itemLocation,
   } = route.params;
+
+  const handlePress = () => {
+    Linking.openURL(
+      `https://www.google.com/search?q=${itemName.replace(
+        ' ',
+        '+',
+      )}+Rick+and+Morty`,
+    );
+  };
 
   return (
     <>
@@ -72,10 +78,10 @@ export const Character = ({ route, navigation }) => {
             <Status>{itemStatus}</Status>
           </TextView>
         </TextContainer>
+        <SearchButton onPress={handlePress}>
+          <ButtonText>Buscar no google</ButtonText>
+        </SearchButton>
       </Container>
-      <SearchButton>
-        <ButtonText>Buscar no google</ButtonText>
-      </SearchButton>
     </>
   );
 };

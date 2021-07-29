@@ -9,12 +9,8 @@ import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
 
-// import { useNavigation } from '@react-navigation/core';
-
 export const Main = ({ navigation }) => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
-
-  // const navigation = useNavigation();
 
   async function dataFetch() {
     await fetch('https://rickandmortyapi.com/api/character?page=1')
