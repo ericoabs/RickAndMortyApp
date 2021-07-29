@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -11,18 +11,24 @@ import { CharacterType } from '../../Components/Card';
 
 export const Main = ({ navigation }) => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function dataFetch() {
-    await fetch('https://rickandmortyapi.com/api/character?page=1')
-      .then((response) => response.json())
-      .then((data) => setCharacterList(data.results));
-  }
+  // async function dataFetch() {
+  //   await fetch('https://rickandmortyapi.com/api/character?page=1')
+  //     .then((response) => response.json())
+  //     .then((data) => setCharacterList(data.results));
+  // }
+  // dataFetch();
 
   useEffect(() => {
-    dataFetch();
+    setIsLoading(true);
+    (async function dataFetch() {
+      await fetch('https://rickandmortyapi.com/api/character?page=1')
+        .then((response) => response.json())
+        .then((data) => setCharacterList(data.results));
+      setIsLoading(false);
+    })();
   }, []);
-
-  // const { itemName } = route.params;
 
   return (
     <>
@@ -33,38 +39,42 @@ export const Main = ({ navigation }) => {
           <InputText placeholder="Busque por um personagem" />
         </InputContainer>
         <CardContainer>
-          <FlatList
-            data={characterList}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }: { item: CharacterType }) => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.push('Character', {
-                      itemName: item.name,
-                      itemSpecies: item.species,
-                      itemGender: item.gender,
-                      itemImage: item.image,
-                      itemOrigin: item.origin.name,
-                      itemLocation: item.location.name,
-                      itemStatus: item.status,
-                    })
-                  }
-                >
-                  <Card
-                    id={item.id}
-                    name={item.name}
-                    species={item.species}
-                    image={item.image}
-                    origin={item.origin.name}
-                    gender={item.gender}
-                    location={item.location.name}
-                    status={item.status}
-                  />
-                </TouchableOpacity>
-              );
-            }}
-          />
+          {isLoading ? (
+            <ActivityIndicator size="small" color="#0000ff" />
+          ) : (
+            <FlatList
+              data={characterList}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }: { item: CharacterType }) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.push('Character', {
+                        itemName: item.name,
+                        itemSpecies: item.species,
+                        itemGender: item.gender,
+                        itemImage: item.image,
+                        itemOrigin: item.origin.name,
+                        itemLocation: item.location.name,
+                        itemStatus: item.status,
+                      })
+                    }
+                  >
+                    <Card
+                      id={item.id}
+                      name={item.name}
+                      species={item.species}
+                      image={item.image}
+                      origin={item.origin.name}
+                      gender={item.gender}
+                      location={item.location.name}
+                      status={item.status}
+                    />
+                  </TouchableOpacity>
+                );
+              }}
+            />
+          )}
         </CardContainer>
       </Container>
     </>
