@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
+
+import Icon from 'react-native-vector-icons/AntDesign';
+
+import { CardContainer, Container, InputText, InputContainer } from './styles';
 
 import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
-import { InputArea } from '../../Components/InputArea';
-
-import { CardContainer, Container, InputText } from './styles';
-
 import { CharacterType } from '../../Components/Card';
-import { FlatList } from 'react-native';
 
 export const Main: React.FC = () => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
 
   async function dataFetch() {
-    await fetch('https://rickandmortyapi.com/api/character?page=1')
+    await fetch('https://rickandmortyapi.com/api/character?page=2')
       .then((response) => response.json())
       .then((data) => setCharacterList(data.results));
   }
@@ -26,8 +26,10 @@ export const Main: React.FC = () => {
     <>
       <Container>
         <Header numberOfCharacters={characterList.length} />
-        {/* <InputArea /> */}
-        <InputText placeholder="Busque por um personagem" />
+        <InputContainer>
+          <Icon name="search1" size={28} color="#000" />
+          <InputText placeholder="Busque por um personagem" />
+        </InputContainer>
         <CardContainer>
           <FlatList
             data={characterList}

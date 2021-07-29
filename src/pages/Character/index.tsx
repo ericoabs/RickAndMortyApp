@@ -28,7 +28,7 @@ export const Character = () => {
         />
         <TextContainer>
           <Name>Rick Sanchez</Name>
-          <Like name="hearto" size={35} color="#1E2047" />
+          <Like name="hearto" size={35} color="#010102" />
         </TextContainer>
         <ArrowIcon>
           <Icon name="arrowleft" size={45} color="#fff" />

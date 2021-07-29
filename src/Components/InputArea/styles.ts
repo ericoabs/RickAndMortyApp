@@ -8,8 +8,6 @@ export const InputContainer = styled.View`
   border-radius: 10px;
 
   position: absolute;
-  z-index: 100;
-  padding-left: 5px;
   margin-top: 100px;
   margin-bottom: 20px;
 
