@@ -9,11 +9,15 @@ import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
 
+// import { useNavigation } from '@react-navigation/core';
+
 export const Main: React.FC = () => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
 
+  // const navigation = useNavigation();
+
   async function dataFetch() {
-    await fetch('https://rickandmortyapi.com/api/character?page=2')
+    await fetch('https://rickandmortyapi.com/api/character?page=1')
       .then((response) => response.json())
       .then((data) => setCharacterList(data.results));
   }

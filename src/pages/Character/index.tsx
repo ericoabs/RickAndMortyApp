@@ -1,5 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+
+// import { useNavigation } from '@react-navigation/core';
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import Like from 'react-native-vector-icons/AntDesign';
 
@@ -18,6 +21,8 @@ import {
 } from './styles';
 
 export const Character = () => {
+  // const navigation = useNavigation();
+
   return (
     <>
       <Container>
