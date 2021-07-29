@@ -9,12 +9,12 @@ import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
 
-import { useNavigation } from '@react-navigation/core';
+// import { useNavigation } from '@react-navigation/core';
 
-export const Main: React.FC = () => {
+export const Main = ({ navigation }) => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   async function dataFetch() {
     await fetch('https://rickandmortyapi.com/api/character?page=1')
@@ -25,6 +25,8 @@ export const Main: React.FC = () => {
   useEffect(() => {
     dataFetch();
   }, []);
+
+  // const { itemName } = route.params;
 
   return (
     <>
@@ -41,7 +43,17 @@ export const Main: React.FC = () => {
             renderItem={({ item }: { item: CharacterType }) => {
               return (
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('Character')}
+                  onPress={() =>
+                    navigation.push('Character', {
+                      itemName: item.name,
+                      itemSpecies: item.species,
+                      itemGender: item.gender,
+                      itemImage: item.image,
+                      itemOrigin: item.origin.name,
+                      itemLocation: item.location.name,
+                      itemStatus: item.status,
+                    })
+                  }
                 >
                   <Card
                     id={item.id}
@@ -49,6 +61,9 @@ export const Main: React.FC = () => {
                     species={item.species}
                     image={item.image}
                     origin={item.origin.name}
+                    gender={item.gender}
+                    location={item.location.name}
+                    status={item.status}
                   />
                 </TouchableOpacity>
               );

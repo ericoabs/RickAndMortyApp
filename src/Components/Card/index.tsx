@@ -19,6 +19,9 @@ export interface CharacterType {
   species: string;
   image: string;
   origin: any;
+  gender: string;
+  status: string;
+  location: any;
 }
 
 export const Card: React.FC<CharacterType> = ({
