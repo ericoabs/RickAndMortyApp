@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -9,12 +9,12 @@ import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
 
-// import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 
 export const Main: React.FC = () => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
 
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
   async function dataFetch() {
     await fetch('https://rickandmortyapi.com/api/character?page=1')
@@ -40,13 +40,17 @@ export const Main: React.FC = () => {
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }: { item: CharacterType }) => {
               return (
-                <Card
-                  id={item.id}
-                  name={item.name}
-                  species={item.species}
-                  image={item.image}
-                  origin={item.origin.name}
-                />
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Character')}
+                >
+                  <Card
+                    id={item.id}
+                    name={item.name}
+                    species={item.species}
+                    image={item.image}
+                    origin={item.origin.name}
+                  />
+                </TouchableOpacity>
               );
             }}
           />

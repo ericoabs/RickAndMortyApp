@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
-// import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import Like from 'react-native-vector-icons/AntDesign';
@@ -21,7 +21,7 @@ import {
 } from './styles';
 
 export const Character = () => {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <>
@@ -35,7 +35,7 @@ export const Character = () => {
           <Name>Rick Sanchez</Name>
           <Like name="hearto" size={35} color="#010102" />
         </TextContainer>
-        <ArrowIcon>
+        <ArrowIcon onPress={() => navigation.navigate('Main')}>
           <Icon name="arrowleft" size={45} color="#fff" />
         </ArrowIcon>
         <TextContainer>
