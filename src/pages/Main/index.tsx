@@ -12,6 +12,7 @@ import { CharacterType } from '../../Components/Card';
 export const Main = ({ navigation }) => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [pageCount, setPageCount] = useState(1);
 
   // async function dataFetch() {
   //   await fetch('https://rickandmortyapi.com/api/character?page=1')
@@ -23,12 +24,14 @@ export const Main = ({ navigation }) => {
   useEffect(() => {
     setIsLoading(true);
     (async function dataFetch() {
-      await fetch('https://rickandmortyapi.com/api/character?page=1')
+      await fetch(`https://rickandmortyapi.com/api/character?page=${pageCount}`)
         .then((response) => response.json())
-        .then((data) => setCharacterList(data.results));
+        .then((data) =>
+          setCharacterList((prevState) => [...prevState, ...data.results]),
+        );
       setIsLoading(false);
     })();
-  }, []);
+  }, [pageCount]);
 
   return (
     <>
@@ -45,6 +48,9 @@ export const Main = ({ navigation }) => {
             <FlatList
               data={characterList}
               keyExtractor={(item) => String(item.id)}
+              onEndReached={() => {
+                setPageCount(pageCount + 1);
+              }}
               renderItem={({ item }: { item: CharacterType }) => {
                 return (
                   <TouchableOpacity

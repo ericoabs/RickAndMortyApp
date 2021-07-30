@@ -9,12 +9,15 @@ export const Container = styled.View`
 `;
 
 export const TextContainer = styled.View`
+  align-items: flex-start;
+  justify-content: space-between;
   flex-direction: row;
-  padding: 20px;
+  margin: 0 20px;
 `;
 
 export const TextView = styled.View`
-  min-width: 200px;
+  flex: 1;
+  min-width: 260px;
   padding-right: 100px;
 `;
 

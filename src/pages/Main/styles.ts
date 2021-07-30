@@ -7,8 +7,6 @@ export const Container = styled.View`
   align-items: center;
   /* padding: 0 20px; */
 
-  position: relative;
-
   background-color: ${({ theme }) => theme.colors.gray};
 `;
 
@@ -44,7 +42,14 @@ export const InputContainer = styled.View`
 `;
 
 export const CardContainer = styled.View`
+  flex: 1;
+
+  justify-content: space-between;
+
+  height: 170px;
+
+  margin-top: 20px;
+
   padding-top: 20px;
-  position: relative;
   width: 90%;
 `;
