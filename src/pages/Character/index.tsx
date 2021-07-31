@@ -75,7 +75,7 @@ export const Character = ({ route, navigation }) => {
 
           <TextView>
             <CardTitle>Status:</CardTitle>
-            <Status>{itemStatus}</Status>
+            <Status status={itemStatus}>{itemStatus}</Status>
           </TextView>
         </TextContainer>
         <SearchButton onPress={handlePress}>

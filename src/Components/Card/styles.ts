@@ -27,7 +27,6 @@ export const CharacterImage = styled.Image`
 
 export const Name = styled.Text`
   margin-bottom: 5px;
-
   font-size: 18px;
   color: ${({ theme }) => theme.colors.title};
   font-family: ${({ theme }) => theme.fonts.semiBold};

@@ -1,4 +1,15 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+import theme from '../../styles/theme';
+
+interface CharacterStatus {
+  status: 'Alive' | 'Dead' | 'Unknown';
+}
+
+const handleStatus = {
+  Alive: theme.colors.green,
+  Dead: theme.colors.red,
+  unknown: theme.colors.yellow,
+};
 
 export const Container = styled.View`
   flex: 1;
@@ -45,10 +56,15 @@ export const Description = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const Status = styled.Text`
+export const Status = styled.Text<CharacterStatus>`
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.green};
+
+  ${(props) =>
+    props.status &&
+    css`
+      color: ${handleStatus[props.status]};
+    `}
 `;
 
 export const SearchButton = styled.TouchableOpacity`
