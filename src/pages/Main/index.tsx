@@ -12,6 +12,9 @@ import { useCallback } from 'react';
 
 export const Main = ({ navigation }) => {
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
+  const [filteredCharacterList, setFilteredCharacterList] = useState<
+    CharacterType[]
+  >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [pageCount, setPageCount] = useState(1);
 
@@ -29,22 +32,26 @@ export const Main = ({ navigation }) => {
 
   const handleTextChange = useCallback(
     (name: string) => {
-      const filteredCharacterList = characterList.filter((character) =>
-        character.name.toLowerCase().includes(name.toLowerCase()),
+      setFilteredCharacterList(
+        characterList.filter((character) =>
+          character.name.toLowerCase().includes(name.toLowerCase()),
+        ),
       );
-      if (filteredCharacterList !== []) {
-        setCharacterList(filteredCharacterList);
-      } else {
-        setPageCount(1);
-      }
+      console.log(filteredCharacterList);
     },
-    [characterList],
+    [characterList, filteredCharacterList],
   );
 
   return (
     <>
       <Container>
-        <Header numberOfCharacters={characterList.length} />
+        <Header
+          numberOfCharacters={
+            filteredCharacterList.length > 0
+              ? filteredCharacterList.length
+              : characterList.length
+          }
+        />
         <InputContainer>
           <Icon name="search1" size={28} color="#000" />
           <InputText
@@ -54,11 +61,16 @@ export const Main = ({ navigation }) => {
         </InputContainer>
         <CardContainer>
           <FlatList
-            data={characterList}
+            data={
+              filteredCharacterList.length > 0
+                ? filteredCharacterList
+                : characterList
+            }
             keyExtractor={(item) => String(item.id)}
             onEndReached={() => {
               setPageCount(pageCount + 1);
             }}
+            ListEmptyComponent={ActivityIndicator}
             renderItem={({ item }: { item: CharacterType }) => {
               return (
                 <TouchableOpacity
