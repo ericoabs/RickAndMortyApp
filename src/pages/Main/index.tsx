@@ -8,6 +8,7 @@ import { CardContainer, Container, InputText, InputContainer } from './styles';
 import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
+// import { useLike } from '../../hooks/useLike';
 import { useCallback } from 'react';
 
 export const Main = ({ navigation }) => {
@@ -15,8 +16,10 @@ export const Main = ({ navigation }) => {
   const [filteredCharacterList, setFilteredCharacterList] = useState<
     CharacterType[]
   >([]);
-  // const [isLoading, setIsLoading] = useState(false);
   const [pageCount, setPageCount] = useState(1);
+  // const { isLiked, setIsLiked } = useLike();
+
+  // const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // setIsLoading(true);

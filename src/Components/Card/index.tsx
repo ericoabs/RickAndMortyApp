@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import Like from 'react-native-vector-icons/AntDesign';
+import { useLike } from '../../hooks/useLike';
 
 import {
   CharacterImage,
@@ -30,6 +31,8 @@ export const Card: React.FC<CharacterType> = ({
   species,
   origin,
 }) => {
+  const { isLiked, setIsLiked } = useLike();
+
   return (
     <Container>
       <View>
@@ -42,8 +45,12 @@ export const Card: React.FC<CharacterType> = ({
         <CardTitle>Origin:</CardTitle>
         <Description>{origin}</Description>
       </TextContainer>
-      <LikeButton>
-        <Like name="hearto" size={30} color="#1E2047" />
+      <LikeButton onPress={() => setIsLiked(!isLiked)}>
+        {isLiked ? (
+          <Like name="hearto" size={35} color="#aa0000" />
+        ) : (
+          <Like name="hearto" size={35} color="#010102" />
+        )}
       </LikeButton>
     </Container>
   );

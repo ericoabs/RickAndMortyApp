@@ -2,6 +2,8 @@
 import React from 'react';
 import { Linking } from 'react-native';
 
+import { useLike } from '../../hooks/useLike';
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import Like from 'react-native-vector-icons/AntDesign';
 
@@ -19,8 +21,11 @@ import {
   ArrowIcon,
   LikeButton,
 } from './styles';
+import { useState } from 'react';
 
 export const Character = ({ route, navigation }) => {
+  const { isLiked, setIsLiked } = useLike();
+
   const {
     itemName,
     itemSpecies,
@@ -46,8 +51,12 @@ export const Character = ({ route, navigation }) => {
         <CharacterImage source={{ uri: itemImage }} />
         <TextContainer>
           <Name>{itemName}</Name>
-          <LikeButton>
-            <Like name="hearto" size={35} color="#010102" />
+          <LikeButton onPress={() => setIsLiked(!isLiked)}>
+            {isLiked ? (
+              <Like name="hearto" size={35} color="#aa0000" />
+            ) : (
+              <Like name="hearto" size={35} color="#010102" />
+            )}
           </LikeButton>
         </TextContainer>
         <ArrowIcon onPress={() => navigation.navigate('Main')}>

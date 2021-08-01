@@ -44,7 +44,7 @@ export const Description = styled.Text`
   font-family: ${({ theme }) => theme.fonts.semiBold};
 `;
 
-export const LikeButton = styled.TouchableHighlight`
+export const LikeButton = styled.TouchableOpacity`
   align-items: flex-end;
   justify-content: center;
   margin-right: 10px;
