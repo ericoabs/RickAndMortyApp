@@ -15,18 +15,18 @@ export const Main = ({ navigation }) => {
   const [filteredCharacterList, setFilteredCharacterList] = useState<
     CharacterType[]
   >([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [pageCount, setPageCount] = useState(1);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     (async function dataFetch() {
       await fetch(`https://rickandmortyapi.com/api/character?page=${pageCount}`)
         .then((response) => response.json())
         .then((data) =>
           setCharacterList((prevState) => [...prevState, ...data.results]),
         );
-      setIsLoading(false);
+      // setIsLoading(false);
     })();
   }, [pageCount]);
 

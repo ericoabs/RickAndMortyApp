@@ -8,12 +8,14 @@ import {
   ImageBg,
   AdvanceButton,
   ButtonText,
+  Logo,
 } from './styles';
 
 export const Welcome = ({ navigation }) => {
   return (
     <Container>
       <ImageBg source={require('../../assets/wallpaper.png')}>
+        <Logo source={require('../../assets/logo.png')} />
         <AdvanceButton onPress={() => navigation.navigate('Main')}>
           <ButtonContainer>
             <ButtonText>Prosseguir</ButtonText>

@@ -98,3 +98,5 @@ export const ArrowIcon = styled.TouchableHighlight`
 
   background-color: ${({ theme }) => theme.colors.darkBlue};
 `;
+
+export const LikeButton = styled.TouchableHighlight``;

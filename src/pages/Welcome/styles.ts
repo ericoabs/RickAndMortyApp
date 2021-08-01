@@ -9,7 +9,7 @@ export const Container = styled.View`
 export const ImageBg = styled.ImageBackground`
   flex: 1;
 
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -44,4 +44,13 @@ export const ButtonText = styled.Text`
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.semiBold};
   color: ${({ theme }) => theme.colors.white};
+`;
+
+export const Logo = styled.Image`
+  z-index: 100;
+  align-content: center;
+  height: 160px;
+  width: 90%;
+
+  padding: 20px;
 `;

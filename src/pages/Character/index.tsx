@@ -17,6 +17,7 @@ import {
   SearchButton,
   ButtonText,
   ArrowIcon,
+  LikeButton,
 } from './styles';
 
 export const Character = ({ route, navigation }) => {
@@ -45,7 +46,9 @@ export const Character = ({ route, navigation }) => {
         <CharacterImage source={{ uri: itemImage }} />
         <TextContainer>
           <Name>{itemName}</Name>
-          <Like name="hearto" size={35} color="#010102" />
+          <LikeButton>
+            <Like name="hearto" size={35} color="#010102" />
+          </LikeButton>
         </TextContainer>
         <ArrowIcon onPress={() => navigation.navigate('Main')}>
           <Icon name="arrowleft" size={45} color="#fff" />
