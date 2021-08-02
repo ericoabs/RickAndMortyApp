@@ -21,63 +21,87 @@ import { CharacterType } from '../../Components/Card';
 export const Main = ({ navigation }) => {
   const [characterCount, setCharacterCount] = useState(0);
   const [pageCount, setPageCount] = useState(1);
-  const [nextPage, setNextPage] = useState(1);
+  const [nextPage, setNextPage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
-  const [filteredCharacterList, setFilteredCharacterList] = useState<
-    CharacterType[]
-  >([]);
+  // const [filteredCharacterList, setFilteredCharacterList] = useState<
+  //   CharacterType[]
+  // >([]);
 
-  // const [isLoading, setIsLoading] = useState(false);
+  const handleSearch = useCallback(async (values) => {
+    const { data } = await api.get(`/character/?page=1&name=${values.name}`);
+    setCharacterList(data.results);
+    setCharacterCount(data.info.count);
+    setNextPage(data.info.next);
+  }, []);
 
-  // useEffect(() => {
-  //   // setIsLoading(true);
-  //   (async function dataFetch() {
-  //     await fetch(`https://rickandmortyapi.com/api/character?page=${pageCount}`)
-  //       .then((response) => response.json())
-  //       .then((data) => setDataFetch(data));
-  //     setCharacterList((prevState) => [...prevState, ...dataFetch.results]),
-  //     // setIsLoading(false);
-  //   })();
-  // }, [pageCount]);
+  async function fetchMore() {
+    const { data } = await api.get(nextPage);
+    setCharacterList((prevState) => [...prevState, ...data.results]);
+    setCharacterCount(data.info.count);
+    setNextPage(data.info.next);
+  }
 
-  // const handleTextChange = useCallback(
-  //   (name: string) => {
-  //     setFilteredCharacterList(
-  //       characterList.filter((character) =>
-  //         character.name.toLowerCase().includes(name.toLowerCase()),
-  //       ),
-  //     );
-  //     console.log(filteredCharacterList);
-  //   },
-  //   [characterList, filteredCharacterList],
-  // );
-
-  // async function handleSearch(event) {
-  //   const { data } = await api.get(`/character/?name=${event.target.value}`);
+  // async function fetchMore() {
+  //   const { data } = await api.get(nextPage);
   //   setFilteredCharacterList((prevState) => [...prevState, ...data.results]);
+  //   setCharacterCount(data.info.count);
+  //   setNextPage(data.info.next);
+  //   console.log(nextPage);
+  // }
+  // const handleNextPage = useCallback(async () => {
+  //   const { data } = await api.get(nextPage);
+  //   setFilteredCharacterList((prevState) => [...prevState, ...data.results]);
+  //   setCharacterCount(data.info.count);
+  //   console.log(nextPage);
+  // }, [nextPage]);
+
+  // async function dataFetch() {
+  //   const { data } = await api.get(`/character/?page=${pageCount}`);
+  //   setCharacterList((prevState) => [...prevState, ...data.results]);
   //   setCharacterCount(data.info.count);
   // }
 
-  const handleSearch = useCallback(async (values) => {
-    const { data } = await api.get(`/character/?name=${values.name}`);
-    console.log(data);
-    setFilteredCharacterList((prevState) => [...prevState, ...data.results]);
-    setCharacterCount(data.info.count);
-  }, []);
+  // useEffect(() => {
+  //   (async function dataFetch() {
+  //     const { data } = await api.get(`/character/?page=${pageCount}`);
+  //     setCharacterList((prevState) => [...prevState, ...data.results]);
+  //     setCharacterCount(data.info.count);
+  //     setNextPage(data.info.next);
+  //     setIsLoading(false);
+  //   })();
+  // }, [pageCount, nextPage]);
 
   useEffect(() => {
+    setIsLoading(true);
     (async function dataFetch() {
-      const { data } = await api.get(`/character/?page=${pageCount}`);
-      setCharacterList((prevState) => [...prevState, ...data.results]);
-      setCharacterCount(data.info.count);
+      await fetch(`https://rickandmortyapi.com/api/character?page=${pageCount}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setCharacterList((prevState) => [...prevState, ...data.results]);
+          setNextPage(data.info.next);
+        });
+      setIsLoading(false);
     })();
   }, [pageCount]);
+
+  if (isLoading) {
+    return (
+      <>
+        <Container>
+          <Header numberOfCharacters={0} />
+
+          <ActivityIndicator size="large" color="#00aaff" />
+        </Container>
+      </>
+    );
+  }
 
   return (
     <>
       <Container>
-        <Header numberOfCharacters={characterCount} />
+        <Header numberOfCharacters={characterList.length} />
         <Formik initialValues={{ name: '' }} onSubmit={handleSearch}>
           {({ handleChange, handleSubmit, values }) => (
             <InputContainer>
@@ -94,14 +118,10 @@ export const Main = ({ navigation }) => {
         </Formik>
         <CardContainer>
           <FlatList
-            data={
-              filteredCharacterList.length > 0
-                ? filteredCharacterList
-                : characterList
-            }
+            data={characterList}
             keyExtractor={(item) => String(item.id)}
             onEndReached={() => {
-              setPageCount(pageCount + 1);
+              characterList.length > 0 ? fetchMore() : <ActivityIndicator />;
             }}
             ListEmptyComponent={ActivityIndicator}
             renderItem={({ item }: { item: CharacterType }) => {
