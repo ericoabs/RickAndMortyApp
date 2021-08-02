@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import api from '../../api/api';
+
 import { ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -8,59 +10,57 @@ import { CardContainer, Container, InputText, InputContainer } from './styles';
 import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
-// import { useLike } from '../../hooks/useLike';
 import { useCallback } from 'react';
 
 export const Main = ({ navigation }) => {
+  const [characterCount, setCharacterCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
+
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
   const [filteredCharacterList, setFilteredCharacterList] = useState<
     CharacterType[]
   >([]);
-  const [pageCount, setPageCount] = useState(1);
-  // const { isLiked, setIsLiked } = useLike();
 
   // const [isLoading, setIsLoading] = useState(false);
 
+  // useEffect(() => {
+  //   // setIsLoading(true);
+  //   (async function dataFetch() {
+  //     await fetch(`https://rickandmortyapi.com/api/character?page=${pageCount}`)
+  //       .then((response) => response.json())
+  //       .then((data) => setDataFetch(data));
+  //     setCharacterList((prevState) => [...prevState, ...dataFetch.results]),
+  //     // setIsLoading(false);
+  //   })();
+  // }, [pageCount]);
+
+  // const handleTextChange = useCallback(
+  //   (name: string) => {
+  //     setFilteredCharacterList(
+  //       characterList.filter((character) =>
+  //         character.name.toLowerCase().includes(name.toLowerCase()),
+  //       ),
+  //     );
+  //     console.log(filteredCharacterList);
+  //   },
+  //   [characterList, filteredCharacterList],
+  // );
+
   useEffect(() => {
-    // setIsLoading(true);
     (async function dataFetch() {
-      await fetch(`https://rickandmortyapi.com/api/character?page=${pageCount}`)
-        .then((response) => response.json())
-        .then((data) =>
-          setCharacterList((prevState) => [...prevState, ...data.results]),
-        );
-      // setIsLoading(false);
+      const { data } = await api.get(`/character/?page=${pageCount}`);
+      setCharacterList((prevState) => [...prevState, ...data.results]);
+      setCharacterCount(data.info.count);
     })();
   }, [pageCount]);
-
-  const handleTextChange = useCallback(
-    (name: string) => {
-      setFilteredCharacterList(
-        characterList.filter((character) =>
-          character.name.toLowerCase().includes(name.toLowerCase()),
-        ),
-      );
-      console.log(filteredCharacterList);
-    },
-    [characterList, filteredCharacterList],
-  );
 
   return (
     <>
       <Container>
-        <Header
-          numberOfCharacters={
-            filteredCharacterList.length > 0
-              ? filteredCharacterList.length
-              : characterList.length
-          }
-        />
+        <Header numberOfCharacters={characterCount} />
         <InputContainer>
           <Icon name="search1" size={28} color="#000" />
-          <InputText
-            placeholder="Busque por um personagem"
-            onChangeText={handleTextChange}
-          />
+          <InputText placeholder="Busque por um personagem" />
         </InputContainer>
         <CardContainer>
           <FlatList
