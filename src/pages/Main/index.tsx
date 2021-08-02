@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import api from '../../api/api';
+import { Formik } from 'formik';
 
 import { ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import { CardContainer, Container, InputText, InputContainer } from './styles';
+import {
+  CardContainer,
+  Container,
+  InputText,
+  InputContainer,
+  SearchButton,
+} from './styles';
 
 import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
-import { useCallback } from 'react';
 
 export const Main = ({ navigation }) => {
   const [characterCount, setCharacterCount] = useState(0);
   const [pageCount, setPageCount] = useState(1);
+  const [nextPage, setNextPage] = useState(1);
 
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
   const [filteredCharacterList, setFilteredCharacterList] = useState<
@@ -46,6 +53,19 @@ export const Main = ({ navigation }) => {
   //   [characterList, filteredCharacterList],
   // );
 
+  // async function handleSearch(event) {
+  //   const { data } = await api.get(`/character/?name=${event.target.value}`);
+  //   setFilteredCharacterList((prevState) => [...prevState, ...data.results]);
+  //   setCharacterCount(data.info.count);
+  // }
+
+  const handleSearch = useCallback(async (values) => {
+    const { data } = await api.get(`/character/?name=${values.name}`);
+    console.log(data);
+    setFilteredCharacterList((prevState) => [...prevState, ...data.results]);
+    setCharacterCount(data.info.count);
+  }, []);
+
   useEffect(() => {
     (async function dataFetch() {
       const { data } = await api.get(`/character/?page=${pageCount}`);
@@ -58,10 +78,20 @@ export const Main = ({ navigation }) => {
     <>
       <Container>
         <Header numberOfCharacters={characterCount} />
-        <InputContainer>
-          <Icon name="search1" size={28} color="#000" />
-          <InputText placeholder="Busque por um personagem" />
-        </InputContainer>
+        <Formik initialValues={{ name: '' }} onSubmit={handleSearch}>
+          {({ handleChange, handleSubmit, values }) => (
+            <InputContainer>
+              <SearchButton onPress={handleSubmit}>
+                <Icon name="search1" size={28} color="#000" />
+              </SearchButton>
+              <InputText
+                placeholder="Busque por um personagem"
+                onChangeText={handleChange('name')}
+                value={values.name}
+              />
+            </InputContainer>
+          )}
+        </Formik>
         <CardContainer>
           <FlatList
             data={

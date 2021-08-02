@@ -53,3 +53,7 @@ export const CardContainer = styled.View`
   padding-top: 20px;
   width: 90%;
 `;
+
+export const SearchButton = styled.TouchableOpacity`
+  flex-direction: row;
+`;
