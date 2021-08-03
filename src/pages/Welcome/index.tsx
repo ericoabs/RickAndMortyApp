@@ -16,7 +16,7 @@ export const Welcome = ({ navigation }) => {
     <Container>
       <ImageBg source={require('../../assets/wallpaper.png')}>
         <Logo source={require('../../assets/logo.png')} />
-        <AdvanceButton onPress={() => navigation.navigate('Main')}>
+        <AdvanceButton onPress={() => navigation.navigate('CharacterList')}>
           <ButtonContainer>
             <ButtonText>Prosseguir</ButtonText>
             <Icon name="arrowright" size={28} color="#fff" />

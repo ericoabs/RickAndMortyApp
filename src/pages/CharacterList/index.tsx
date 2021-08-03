@@ -18,7 +18,7 @@ import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { CharacterType } from '../../Components/Card';
 
-export const Main = ({ navigation }) => {
+export const CharacterList = ({ navigation }) => {
   const [characterCount, setCharacterCount] = useState(0);
   // const [pageCount, setPageCount] = useState(1);
   const [nextPage, setNextPage] = useState('');
