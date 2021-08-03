@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
+
 import { useState } from 'react';
 import { View } from 'react-native';
 
@@ -47,8 +48,6 @@ export const Card: React.FC<CharacterType> = ({
       if (currentData.includes(id)) {
         setIsliked(true);
       }
-      console.log(`${name} id ${id} is liked? ${isLiked}`);
-      console.log(currentData);
     }
     loadData();
   }, [id, isLiked, name, refreshPage]);
@@ -62,15 +61,20 @@ export const Card: React.FC<CharacterType> = ({
       const dataFormated = [...currentData, characterLike];
 
       if (currentData.includes(id)) {
-        await AsyncStorage.removeItem(`key_${id}`);
+        currentData.splice(currentData.indexOf(id), 1);
+        await AsyncStorage.setItem(dataKey, JSON.stringify(currentData));
+        setIsliked(!isLiked);
+        setRefreshPage('Refresh');
       } else {
+        setIsliked(!isLiked);
         await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormated));
       }
     } catch (error) {
       console.log(error);
     }
+    console.log('cheguei');
     setRefreshPage('Refresh');
-  }, [id]);
+  }, [id, isLiked]);
 
   return (
     <Container>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import api from '../../api/api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import 'react-native-gesture-handler';
+
 import { Formik } from 'formik';
 
 import { ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
@@ -24,21 +25,9 @@ export const CharacterList = ({ navigation }) => {
   const [nextPage, setNextPage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log(characterCount);
+
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
-
-  const dataKey = '@RickAndMortyApp:likes';
-
-  // const handleLike = useCallback(async () => {
-  //   const characterLike = {
-  //     id: '1',
-  //     isLiked: false,
-  //   };
-  //   try {
-  //     await AsyncStorage.setItem(dataKey, JSON.stringify(characterLike));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
 
   const handleSearch = useCallback(async (values) => {
     const { data } = await api.get(`/character/?page=1&name=${values.name}`);
@@ -62,6 +51,7 @@ export const CharacterList = ({ navigation }) => {
         .then((data) => {
           setCharacterList((prevState) => [...prevState, ...data.results]);
           setNextPage(data.info.next);
+          setCharacterCount(data.info.count);
         });
       setIsLoading(false);
     })();

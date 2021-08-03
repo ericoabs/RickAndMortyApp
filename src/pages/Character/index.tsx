@@ -24,6 +24,7 @@ import { useEffect } from 'react';
 
 export const Character = ({ route, navigation }) => {
   const [isLiked, setIsliked] = useState(false);
+  const [refreshPage, setRefreshPage] = useState('');
 
   const {
     itemId,
@@ -56,14 +57,20 @@ export const Character = ({ route, navigation }) => {
       const dataFormated = [...currentData, characterLike];
 
       if (currentData.includes(itemId)) {
-        await AsyncStorage.removeItem(dataKey);
+        currentData.splice(currentData.indexOf(itemId), 1);
+        await AsyncStorage.setItem(dataKey, JSON.stringify(currentData));
+        setIsliked(!isLiked);
+        setRefreshPage('Refresh');
       } else {
+        setIsliked(!isLiked);
         await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormated));
       }
     } catch (error) {
       console.log(error);
     }
-  }, [itemId]);
+    console.log('cheguei');
+    setRefreshPage('Refresh');
+  }, [itemId, isLiked]);
 
   useEffect(() => {
     async function loadData() {
