@@ -30,7 +30,7 @@ export const ButtonContainer = styled.View`
   background-color: ${({ theme }) => theme.colors.darkBlue};
 `;
 
-export const AdvanceButton = styled.TouchableHighlight`
+export const AdvanceButton = styled.TouchableOpacity`
   width: 90%;
 
   justify-content: center;
