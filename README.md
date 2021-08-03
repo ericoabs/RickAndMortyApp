@@ -2,10 +2,10 @@
 
 O aplicativo consiste em uma listagem dos personagens da série Rick and Morty. Nele é possível listar todos os personagens, buscar por algum personagem, ver detalhes de um personagem e favorita-lo.
 
-![Welcome](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003131/print01_v4h1rs.png)
-![MainScreen](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print02_yxhijo.png)
-![Search](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print03_qzcoa3.png)
-![Character](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print04_xq6ymg.png)
+<img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1628003131/print01_v4h1rs.png" width="250" height="500"/>
+<img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print02_yxhijo.png" width="250" height="500"/>
+<img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print03_qzcoa3.png" width="250" height="500"/>
+<img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print04_xq6ymg.png" width="250" height="500"/>
 
 ## Instalação
 
@@ -32,19 +32,19 @@ $ npx react-native run-android
 
 A listagem possui rolagem infinita. Nesta lista, é possível favoritar um personagem.
 
-![MainScreen](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print02_yxhijo.png)
+<img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print02_yxhijo.png" width="250" height="500"/>
 
 ## Filtro de Busca
 
 Também é possível buscar por algum personagem, basta inserir o nome do personagem desejado e clicar na lupa para realizar a busca.
 
-![Search](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print03_qzcoa3.png)
+<img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print03_qzcoa3.png" width="250" height="500"/>
 
 ## Detalhes do Personagem
 
 Há uma página com detalhes de um personagem selecionado. Na página do personagem, também é possível favorita-lo.
 
-![Character](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print04_xq6ymg.png)
+<img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print04_xq6ymg.png" width="250" height="500"/>
 
 ## Meta
 
