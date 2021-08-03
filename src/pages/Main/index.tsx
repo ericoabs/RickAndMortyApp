@@ -20,7 +20,7 @@ import { CharacterType } from '../../Components/Card';
 
 export const Main = ({ navigation }) => {
   const [characterCount, setCharacterCount] = useState(0);
-  const [pageCount, setPageCount] = useState(1);
+  // const [pageCount, setPageCount] = useState(1);
   const [nextPage, setNextPage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -76,7 +76,7 @@ export const Main = ({ navigation }) => {
   useEffect(() => {
     setIsLoading(true);
     (async function dataFetch() {
-      await fetch(`https://rickandmortyapi.com/api/character?page=${pageCount}`)
+      await fetch('https://rickandmortyapi.com/api/character')
         .then((response) => response.json())
         .then((data) => {
           setCharacterList((prevState) => [...prevState, ...data.results]);
@@ -84,7 +84,7 @@ export const Main = ({ navigation }) => {
         });
       setIsLoading(false);
     })();
-  }, [pageCount]);
+  }, []);
 
   if (isLoading) {
     return (
