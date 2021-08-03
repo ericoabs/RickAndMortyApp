@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import api from '../../api/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Formik } from 'formik';
 
 import { ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
@@ -20,14 +21,24 @@ import { CharacterType } from '../../Components/Card';
 
 export const CharacterList = ({ navigation }) => {
   const [characterCount, setCharacterCount] = useState(0);
-  // const [pageCount, setPageCount] = useState(1);
   const [nextPage, setNextPage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const [characterList, setCharacterList] = useState<CharacterType[]>([]);
-  // const [filteredCharacterList, setFilteredCharacterList] = useState<
-  //   CharacterType[]
-  // >([]);
+
+  const dataKey = '@RickAndMortyApp:likes';
+
+  // const handleLike = useCallback(async () => {
+  //   const characterLike = {
+  //     id: '1',
+  //     isLiked: false,
+  //   };
+  //   try {
+  //     await AsyncStorage.setItem(dataKey, JSON.stringify(characterLike));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   const handleSearch = useCallback(async (values) => {
     const { data } = await api.get(`/character/?page=1&name=${values.name}`);
@@ -42,36 +53,6 @@ export const CharacterList = ({ navigation }) => {
     setCharacterCount(data.info.count);
     setNextPage(data.info.next);
   }
-
-  // async function fetchMore() {
-  //   const { data } = await api.get(nextPage);
-  //   setFilteredCharacterList((prevState) => [...prevState, ...data.results]);
-  //   setCharacterCount(data.info.count);
-  //   setNextPage(data.info.next);
-  //   console.log(nextPage);
-  // }
-  // const handleNextPage = useCallback(async () => {
-  //   const { data } = await api.get(nextPage);
-  //   setFilteredCharacterList((prevState) => [...prevState, ...data.results]);
-  //   setCharacterCount(data.info.count);
-  //   console.log(nextPage);
-  // }, [nextPage]);
-
-  // async function dataFetch() {
-  //   const { data } = await api.get(`/character/?page=${pageCount}`);
-  //   setCharacterList((prevState) => [...prevState, ...data.results]);
-  //   setCharacterCount(data.info.count);
-  // }
-
-  // useEffect(() => {
-  //   (async function dataFetch() {
-  //     const { data } = await api.get(`/character/?page=${pageCount}`);
-  //     setCharacterList((prevState) => [...prevState, ...data.results]);
-  //     setCharacterCount(data.info.count);
-  //     setNextPage(data.info.next);
-  //     setIsLoading(false);
-  //   })();
-  // }, [pageCount, nextPage]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -101,7 +82,7 @@ export const CharacterList = ({ navigation }) => {
   return (
     <>
       <Container>
-        <Header numberOfCharacters={characterList.length} />
+        <Header numberOfCharacters={characterCount} />
         <Formik initialValues={{ name: '' }} onSubmit={handleSearch}>
           {({ handleChange, handleSubmit, values }) => (
             <InputContainer>
@@ -129,6 +110,7 @@ export const CharacterList = ({ navigation }) => {
                 <TouchableOpacity
                   onPress={() =>
                     navigation.push('Character', {
+                      itemId: item.id,
                       itemName: item.name,
                       itemSpecies: item.species,
                       itemGender: item.gender,
@@ -148,6 +130,7 @@ export const CharacterList = ({ navigation }) => {
                     gender={item.gender}
                     location={item.location.name}
                     status={item.status}
+                    like={false}
                   />
                 </TouchableOpacity>
               );
