@@ -2,10 +2,10 @@
 
 O aplicativo consiste em uma listagem dos personagens da série Rick and Morty. Nele é possível listar todos os personagens, buscar por algum personagem, ver detalhes de um personagem e favorita-lo.
 
-![Welcome](./assets/print01.png)
-![MainScreen](./assets/print02.png)
-![Search](./assets/print03.png)
-![Character](./assets/print04.png)
+![Welcome](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003131/print01_v4h1rs.png)
+![MainScreen](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print02_yxhijo.png)
+![Search](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print03_qzcoa3.png)
+![Character](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print04_xq6ymg.png)
 
 ## Instalação
 
@@ -32,19 +32,19 @@ $ npx react-native run-android
 
 A listagem possui rolagem infinita. Nesta lista, é possível favoritar um personagem.
 
-![MainScreen](./assets/print02.png)
+![MainScreen](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print02_yxhijo.png)
 
 ## Filtro de Busca
 
 Também é possível buscar por algum personagem, basta inserir o nome do personagem desejado e clicar na lupa para realizar a busca.
 
-![Search](./assets/print03.png)
+![Search](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print03_qzcoa3.png)
 
 ## Detalhes do Personagem
 
 Há uma página com detalhes de um personagem selecionado. Na página do personagem, também é possível favorita-lo.
 
-![Character](./assets/print04.png)
+![Character](https://res.cloudinary.com/dvawcyisr/image/upload/v1628003130/print04_xq6ymg.png)
 
 ## Meta
 
