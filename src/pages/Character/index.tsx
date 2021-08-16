@@ -68,7 +68,6 @@ export const Character = ({ route, navigation }) => {
     } catch (error) {
       console.log(error);
     }
-    console.log('cheguei');
     setRefreshPage('Refresh');
   }, [itemId, isLiked]);
 

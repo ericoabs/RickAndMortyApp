@@ -72,7 +72,6 @@ export const Card: React.FC<CharacterType> = ({
     } catch (error) {
       console.log(error);
     }
-    console.log('cheguei');
     setRefreshPage('Refresh');
   }, [id, isLiked]);
 
